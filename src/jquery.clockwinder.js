@@ -21,7 +21,7 @@
   $.clockwinder = {
     update:function(elements, options) {
       elements.each(function() {
-        var newTime = $.clockwinder.compute($(this).attr(options.attr), options);
+        var newTime = $.clockwinder.compute($(this).data(options.attr), options);
         
         if (options.displayFunction) {
           options.displayFunction.call(this, newTime, options);
@@ -33,9 +33,8 @@
       });
     },
   
-    compute:function(timeStr, opts) {
+    compute:function(then, opts) {
       var options = opts || {};
-      var then = Date.parse(timeStr);
       var today = new Date();
 
       distance_in_milliseconds = today - then;
